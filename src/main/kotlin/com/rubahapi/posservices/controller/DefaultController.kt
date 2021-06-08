@@ -1,4 +1,4 @@
-package com.rubahapi.posservices
+package com.rubahapi.posservices.controller
 
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping

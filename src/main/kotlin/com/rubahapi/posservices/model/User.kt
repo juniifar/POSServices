@@ -11,6 +11,7 @@ import javax.persistence.*
 @EntityListeners(AuditingEntityListener::class)
 class User(
     @Id
+    @GeneratedValue
     val id: Long,
     val name: String,
     val username: String,
