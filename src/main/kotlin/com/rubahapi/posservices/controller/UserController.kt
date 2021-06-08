@@ -1,12 +1,20 @@
 package com.rubahapi.posservices.controller
 
 import com.rubahapi.posservices.model.User
+import com.rubahapi.posservices.payload.UserPayloadInsert
+import com.rubahapi.posservices.repository.UserRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDateTime
+
 
 @RestController
 @CrossOrigin
 @RequestMapping("/users")
 class UserController {
+    @Autowired
+    lateinit var userRepository: UserRepository
+
 
     @GetMapping("")
     fun index(): MutableList<User> {
@@ -19,8 +27,9 @@ class UserController {
     }
 
     @PostMapping("/create")
-    fun create():String{
-        return "create"
+    fun create(@RequestBody newUser: UserPayloadInsert):User{
+        val user = User(0, newUser.name, newUser.username, newUser.password,newUser.state, LocalDateTime.now(), LocalDateTime.now())
+        return userRepository.save(user)
     }
 
 
